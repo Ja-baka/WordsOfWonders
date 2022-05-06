@@ -1,34 +1,35 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class WordsDictionary : MonoBehaviour
 {
-    [SerializeField] private Dictionary<string, bool> _words;
+    [SerializeField] private string[] _words;
+    private List<string> _guessedWords;
 
-    public bool IsContainWord(string word)
+    private void Start()
     {
-        if (_words.ContainsKey(word) == false
-            || _words[word] == true)
+        for (int i = 0; i < _words.Length; i++)
+        {
+            _words[i] = _words[i].ToLower();
+        }
+        _guessedWords = new List<string>();
+    }
+
+    public bool TryGuess(string word)
+    {
+        if (_words.Contains(word) == false
+            || _guessedWords.Contains(word))
         {
             return false;
         }
 
-        _words[word] = true;
+        _guessedWords.Add(word);
         return true;
     }
 
     public void ResetDictionary()
     {
-        Dictionary<string, bool> temp = _words.ToDictionary
-        (
-            (x) => x.Key,
-            (x) => x.Value
-        );
-        foreach (var pair in temp)
-        {
-            _words[pair.Key] = false;
-        }
+        _guessedWords.Clear();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -59,8 +60,18 @@ public class WordBuilder : MonoBehaviour
         {
             sb.Append(letter.Charactor);
         }
-        Debug.Log(sb.ToString());
+
+        GuessWord(sb.ToString());
 
         _pickedLetters.Clear();
+    }
+
+    private void GuessWord(string word)
+    {
+        string message = _dictionary.TryGuess(word)
+            ? "Вы угадали!"
+            : "Нет такого слова...";
+
+        Debug.Log(message);
     }
 }

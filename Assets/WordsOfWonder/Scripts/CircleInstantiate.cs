@@ -9,6 +9,11 @@ public class CircleInstantiate : MonoBehaviour
 
     private void Awake()
     {
+        for (int i = 0; i < _letters.Length; i++)
+        {
+            _letters[i] = char.ToLower(_letters[i]);
+        }
+
         int angleStep = 360 / _letters.Length;
         for (int i = 0; i < _letters.Length; i++)
         {
