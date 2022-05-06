@@ -21,7 +21,6 @@ public class Letter : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log($"- Begin");
         DragBegin?.Invoke(this);
     }
 
@@ -32,7 +31,6 @@ public class Letter : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log($"- End");
         DragEnd?.Invoke();
     }
 
