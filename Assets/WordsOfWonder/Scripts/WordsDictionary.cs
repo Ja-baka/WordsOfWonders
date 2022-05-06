@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class WordsDictionary : MonoBehaviour
 {
     [SerializeField] private string[] _words;
+    [SerializeField] private GameObject[] _gameObjects;
+
     private List<string> _guessedWords;
 
     private void Start()
@@ -25,11 +28,17 @@ public class WordsDictionary : MonoBehaviour
         }
 
         _guessedWords.Add(word);
+        int index = Array.IndexOf(_words, word);
+        _gameObjects[index].SetActive(true);
         return true;
     }
 
     public void ResetDictionary()
     {
         _guessedWords.Clear();
+        for (int i = 0; i < _gameObjects.Length; i++)
+        {
+            _gameObjects[i].SetActive(false);
+        }
     }
 }
