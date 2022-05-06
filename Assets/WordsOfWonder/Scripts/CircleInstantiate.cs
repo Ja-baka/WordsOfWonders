@@ -3,23 +3,23 @@ using UnityEngine;
 
 public class CircleInstantiate : MonoBehaviour
 {
-    public GameObject Template;
-    public char[] Letters;
-    public float Radius;
+    [SerializeField] private GameObject _letterTemplate;
+    [SerializeField] private char[] _letters;
+    [SerializeField] private float _radius;
 
     private void Awake()
     {
-        int angleStep = 360 / Letters.Length;
-        for (int i = 0; i < Letters.Length; i++)
+        int angleStep = 360 / _letters.Length;
+        for (int i = 0; i < _letters.Length; i++)
         {
-            GameObject letter = Instantiate(Template, transform);
+            GameObject letter = Instantiate(_letterTemplate, transform);
             TextMeshProUGUI tmpro = letter.GetComponentInChildren<TextMeshProUGUI>();
-            tmpro.text = Letters[i].ToString();
+            tmpro.text = _letters[i].ToString();
 
             letter.transform.localPosition = new Vector3
             (
-                x: Radius * Mathf.Cos(angleStep * (i + 1) * Mathf.Deg2Rad),
-                y: Radius * Mathf.Sin(angleStep * (i + 1) * Mathf.Deg2Rad),
+                x: _radius * Mathf.Cos(angleStep * (i + 1) * Mathf.Deg2Rad),
+                y: _radius * Mathf.Sin(angleStep * (i + 1) * Mathf.Deg2Rad),
                 z: 0
             );
         }

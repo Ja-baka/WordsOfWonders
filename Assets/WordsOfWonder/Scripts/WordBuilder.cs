@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class WordBuilder : MonoBehaviour
 {
+    [SerializeField] private WordsDictionary _dictionary;
+    
     private Letter[] _allLetters;
     private List<Letter> _pickedLetters;
     private bool _isPicking;
-
 
     private void Start()
     {
