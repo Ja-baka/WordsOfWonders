@@ -10,6 +10,8 @@ public class WordBuilder : MonoBehaviour
     private Letter[] _allLetters;
     private List<Letter> _pickedLetters;
 
+    public event Action<Letter> PickindStarted;
+    public event Action<Letter> LetterPicked;
     public event Action PickindEnded;
 
     public bool IsPicking { get; private set; }
@@ -38,6 +40,7 @@ public class WordBuilder : MonoBehaviour
 
     private void OnDragBegin(Letter letter)
     {
+        PickindStarted?.Invoke(letter);
         IsPicking = true;
 
         _pickedLetters.Add(letter);
@@ -52,6 +55,7 @@ public class WordBuilder : MonoBehaviour
         }
 
         _pickedLetters.Add(letter);
+        LetterPicked?.Invoke(letter);
     }
 
     private void OnDragEnd()
