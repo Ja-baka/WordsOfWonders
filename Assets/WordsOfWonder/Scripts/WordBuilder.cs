@@ -9,7 +9,10 @@ public class WordBuilder : MonoBehaviour
     
     private Letter[] _allLetters;
     private List<Letter> _pickedLetters;
-    private bool _isPicking;
+
+    public event Action PickindEnded;
+
+    public bool IsPicking { get; private set; }
 
     private void Start()
     {
@@ -35,14 +38,14 @@ public class WordBuilder : MonoBehaviour
 
     private void OnDragBegin(Letter letter)
     {
-        _isPicking = true;
+        IsPicking = true;
 
         _pickedLetters.Add(letter);
     }
 
     private void OnMouseEnterLetter(Letter letter)
     {
-        if (_isPicking == false
+        if (IsPicking == false
             || _pickedLetters.Contains(letter))
         {
             return;
@@ -53,7 +56,7 @@ public class WordBuilder : MonoBehaviour
 
     private void OnDragEnd()
     {
-        _isPicking = false;
+        IsPicking = false;
 
         StringBuilder sb = new StringBuilder();
         foreach (Letter letter in _pickedLetters)
@@ -64,6 +67,7 @@ public class WordBuilder : MonoBehaviour
         GuessWord(sb.ToString());
 
         _pickedLetters.Clear();
+        PickindEnded?.Invoke();
     }
 
     private void GuessWord(string word)

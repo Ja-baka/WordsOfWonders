@@ -3,20 +3,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(CircleCollider2D))]
 public class Letter : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private char _charactor;
-
     public event Action<Letter> DragBegin;
     public event Action<Letter> MouseEnter;
     public event Action DragEnd;
 
-    public char Charactor => _charactor;
+    public char Charactor { get; private set; }
 
     private void Start()
     {
         TextMeshProUGUI tmpro = GetComponentInChildren<TextMeshProUGUI>();
-        _charactor = tmpro.text[0];
+        Charactor = tmpro.text[0];
     }
 
     public void OnBeginDrag(PointerEventData eventData)
