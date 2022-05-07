@@ -509,8 +509,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 613796085}
   - {fileID: 2123231540}
+  - {fileID: 613796085}
   - {fileID: 2002812937}
   - {fileID: 260805518}
   m_Father: {fileID: 0}
@@ -634,11 +634,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _words:
-  - "\u0441\u043D\u0435\u0433"
-  - "\u044E\u0433"
-  _gameObjects:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 622494133}
+  - {fileID: 1241848551}
 --- !u!4 &590756364
 Transform:
   m_ObjectHideFlags: 0
@@ -666,7 +663,7 @@ GameObject:
   - component: {fileID: 613796087}
   - component: {fileID: 613796086}
   m_Layer: 5
-  m_Name: '[DEBUG] Button Reset'
+  m_Name: Button Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -685,12 +682,12 @@ RectTransform:
   m_Children:
   - {fileID: 1831421281}
   m_Father: {fileID: 569045599}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 801, y: -490}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 845.1, y: -490}
+  m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &613796086
 MonoBehaviour:
@@ -736,10 +733,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 590756363}
-        m_TargetAssemblyTypeName: WordsDictionary, Assembly-CSharp
-        m_MethodName: ResetDictionary
-        m_Mode: 1
+      - m_Target: {fileID: 798537150}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadSceneByIndex
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -834,11 +831,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c80f0242012a0042b3034387c983af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _wordValue: "\u0441\u043D\u0435\u0433"
   _textCells:
   - {fileID: 1703694489}
   - {fileID: 1753153826}
   - {fileID: 205910227}
   - {fileID: 954566313}
+--- !u!1 &798537149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 798537151}
+  - component: {fileID: 798537150}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &798537150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798537149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 586a0558ced740249b27b506443a147c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &798537151
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798537149}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.3676853, y: -0.55727893, z: -1.0260078}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &829496294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,6 +1248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c80f0242012a0042b3034387c983af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _wordValue: "\u0433\u0435\u043D"
   _textCells:
   - {fileID: 1718635637}
   - {fileID: 205910227}
@@ -1606,9 +1648,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Reset
-
-'
+  m_text: "\u0412\u044B\u0439\u0442\u0438"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1635,8 +1675,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 44.6
+  m_fontSizeBase: 44.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1858,7 +1898,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 569045599}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

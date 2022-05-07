@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/WordsOfWonder/Scenes/SampleScene.unity
+    path: Assets/WordsOfWonder/Scenes/MainMenu.unity
+    guid: 8a6b86e6f85be164699c43fffb39dd0e
+  - enabled: 1
+    path: Assets/WordsOfWonder/Scenes/Level 1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/WordsOfWonder/Scenes/Level 2.unity
+    guid: e420276089e758b47bfb6260ca55fcc9
   m_configObjects: {}
