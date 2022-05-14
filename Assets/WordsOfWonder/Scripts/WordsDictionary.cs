@@ -1,4 +1,4 @@
-using System;
+//using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -26,14 +26,15 @@ public class WordsDictionary : MonoBehaviour
 
     public void ShowTip()
     {
-        Word word = _words.FirstOrDefault((w) 
+        var notGuessedWords = _words.Where((w) 
             => _guessedWords.Contains(w.Value) == false);
 
-        if (word == null)
+        if (notGuessedWords.Any() == false)
         {
-            throw new Exception("Все слова уже отгаданы");
+            throw new System.Exception("Все слова уже отгаданы");
         }
 
+        Word word = notGuessedWords.OrderBy((x) => Random.value).First();
         Debug.Log(word.Tip);
     }
 
@@ -46,7 +47,7 @@ public class WordsDictionary : MonoBehaviour
         }
 
         _guessedWords.Add(word);
-        int index = Array.IndexOf(_wordsValue, word);
+        int index = System.Array.IndexOf(_wordsValue, word);
         _words[index].OpenWord();
         return true;
     }
