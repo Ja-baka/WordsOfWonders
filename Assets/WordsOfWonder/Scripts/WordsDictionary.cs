@@ -7,6 +7,7 @@ public class WordsDictionary : MonoBehaviour
 {
     [SerializeField] private Word[] _words;
     [SerializeField] private TextMeshProUGUI _message;
+    [SerializeField] private Score _score;
 
     private string[] _wordsValue;
     private List<string> _guessedWords;
@@ -40,6 +41,7 @@ public class WordsDictionary : MonoBehaviour
         Word word = notGuessedWords.OrderBy((x) => Random.value).First();
         _message.color = Color.white;
         _message.text = $"Подсказка: {word.Tip}";
+        _score.UsedTip();
     }
 
     public void TryGuess(string word)
@@ -49,6 +51,7 @@ public class WordsDictionary : MonoBehaviour
         {
             _message.color = Color.red;
             _message.text = "Нет такого слова";
+            _score.Miss();
             return;
         }
 
@@ -56,6 +59,7 @@ public class WordsDictionary : MonoBehaviour
         int index = System.Array.IndexOf(_wordsValue, word);
         _words[index].OpenWord();
         _message.text = string.Empty;
+        _score.Guess();
     }
 
     public void ResetDictionary()
