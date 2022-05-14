@@ -45,6 +45,11 @@ public class LetterView : MonoBehaviour
         }
     }
 
+    public void Show()
+    {
+        SetBackgroundAlpha(1f);
+    }
+
     private void SetBackgroundAlpha(float value)
     {
         Color tempColor = _background.color;

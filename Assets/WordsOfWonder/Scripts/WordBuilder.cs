@@ -43,6 +43,9 @@ public class WordBuilder : MonoBehaviour
         PickindStarted?.Invoke(letter);
         IsPicking = true;
 
+        LetterView letterView = letter.GetComponent<LetterView>();
+        letterView.Show();
+
         _pickedLetters.Add(letter);
     }
 
