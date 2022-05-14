@@ -4,10 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(TextMeshProUGUI))]
 internal class Score : MonoBehaviour
 {
-    [SerializeField] private int _bonusPerWord;
+    [SerializeField] private int _bonusPerLetter;
     [SerializeField] private int _penaltyPerTip;
     [SerializeField] private int _penaltyPerMiss;
     [SerializeField] private int _timeToGuess;
+    [SerializeField] private bool _canBeNegativeScore;
 
     private float _elapsedTime;
     private int _scorePoitns;
@@ -26,9 +27,9 @@ internal class Score : MonoBehaviour
         _elapsedTime += Time.deltaTime;
     }
 
-    public void Guess()
+    public void Guess(int lettersCount)
     {
-        _scorePoitns += (int)(_bonusPerWord - _elapsedTime / _timeToGuess);
+        _scorePoitns += Mathf.RoundToInt(_bonusPerLetter * lettersCount - _elapsedTime / _timeToGuess);
         ShowScore();
     }
 
@@ -46,6 +47,11 @@ internal class Score : MonoBehaviour
 
     private void ShowScore()
     {
+        if (_scorePoitns < 0
+            && _canBeNegativeScore == false)
+        {
+            _scorePoitns = 0;
+        }
         _view.text = _prefix + _scorePoitns;
     }
 }

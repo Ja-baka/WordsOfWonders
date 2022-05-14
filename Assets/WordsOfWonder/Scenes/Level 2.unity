@@ -2499,10 +2499,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd196d8f1029bd4099cbd40599eaa31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bonusPerWord: 100
+  _bonusPerLetter: 50
   _penaltyPerTip: 500
   _penaltyPerMiss: 10
-  _timeToGuess: 100
+  _timeToGuess: 10
+  _canBeNegativeScore: 1
 --- !u!1 &1281797481 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6039212391382439018, guid: c40ee82fa1b0dfc4e85bad41fa594d9e, type: 3}

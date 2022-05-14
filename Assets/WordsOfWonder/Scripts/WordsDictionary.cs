@@ -59,7 +59,7 @@ public class WordsDictionary : MonoBehaviour
         int index = System.Array.IndexOf(_wordsValue, word);
         _words[index].OpenWord();
         _message.text = string.Empty;
-        _score.Guess();
+        _score.Guess(word.Length);
     }
 
     public void ResetDictionary()
