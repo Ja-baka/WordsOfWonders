@@ -76,10 +76,6 @@ public class WordBuilder : MonoBehaviour
 
     private void GuessWord(string word)
     {
-        string message = _dictionary.TryGuess(word)
-            ? "Вы угадали!"
-            : "Нет такого слова...";
-
-        Debug.Log(message);
+        _dictionary.TryGuess(word);
     }
 }

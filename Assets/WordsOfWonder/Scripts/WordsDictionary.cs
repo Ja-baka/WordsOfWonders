@@ -1,11 +1,12 @@
-//using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 
 public class WordsDictionary : MonoBehaviour
 {
     [SerializeField] private Word[] _words;
+    [SerializeField] private TextMeshProUGUI _message;
 
     private string[] _wordsValue;
     private List<string> _guessedWords;
@@ -31,25 +32,30 @@ public class WordsDictionary : MonoBehaviour
 
         if (notGuessedWords.Any() == false)
         {
-            throw new System.Exception("Все слова уже отгаданы");
+            _message.color = Color.red;
+            _message.text = "Все слова уже отгаданы";
+            return;
         }
 
         Word word = notGuessedWords.OrderBy((x) => Random.value).First();
-        Debug.Log(word.Tip);
+        _message.color = Color.white;
+        _message.text = $"Подсказка: {word.Tip}";
     }
 
-    public bool TryGuess(string word)
+    public void TryGuess(string word)
     {
         if (_wordsValue.Contains(word) == false
             || _guessedWords.Contains(word))
         {
-            return false;
+            _message.color = Color.red;
+            _message.text = "Нет такого слова";
+            return;
         }
 
         _guessedWords.Add(word);
         int index = System.Array.IndexOf(_wordsValue, word);
         _words[index].OpenWord();
-        return true;
+        _message.text = string.Empty;
     }
 
     public void ResetDictionary()
