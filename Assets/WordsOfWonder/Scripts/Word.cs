@@ -3,16 +3,18 @@ using UnityEngine;
 
 public class Word : MonoBehaviour
 {
-    [SerializeField] private string _wordValue;
+    [SerializeField] private string _value;
     [SerializeField] private GameObject[] _textCells;
+    [TextArea] [SerializeField] private string _tip;
 
     private TextMeshProUGUI[] _textes;
 
-    public string WordValue => _wordValue;
+    public string Value => _value;
+    public string Tip => _tip;
 
     private void OnValidate()
     {
-        _wordValue = _wordValue.ToLower();
+        _value = _value.ToLower();
     }
 
     private void Awake()

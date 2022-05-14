@@ -10,16 +10,31 @@ public class WordsDictionary : MonoBehaviour
     private string[] _wordsValue;
     private List<string> _guessedWords;
 
+    public Word[] Words => _words;
+
     private void Start()
     {
         _wordsValue = new string[_words.Length];
         int index = 0;
         foreach (Word word in _words)
         {
-            _wordsValue[index++] = word.WordValue;
+            _wordsValue[index++] = word.Value;
         }
 
         _guessedWords = new List<string>();
+    }
+
+    public void ShowTip()
+    {
+        Word word = _words.FirstOrDefault((w) 
+            => _guessedWords.Contains(w.Value) == false);
+
+        if (word == null)
+        {
+            throw new Exception("Все слова уже отгаданы");
+        }
+
+        Debug.Log(word.Tip);
     }
 
     public bool TryGuess(string word)
