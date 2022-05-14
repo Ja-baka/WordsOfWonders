@@ -12,6 +12,8 @@ public class WordsDictionary : MonoBehaviour
     private string[] _wordsValue;
     private List<string> _guessedWords;
 
+    public System.Action GameOver;
+
     public Word[] Words => _words;
 
     private void Start()
@@ -46,12 +48,17 @@ public class WordsDictionary : MonoBehaviour
 
     public void TryGuess(string word)
     {
-        if (_wordsValue.Contains(word) == false
-            || _guessedWords.Contains(word))
+        if (_wordsValue.Contains(word) == false)
         {
             _message.color = Color.red;
             _message.text = "Нет такого слова";
             _score.Miss();
+            return;
+        }
+        if (_guessedWords.Contains(word))
+        {
+            _message.color = Color.red;
+            _message.text = "Вы уже отгадали это слово";
             return;
         }
 
@@ -60,6 +67,16 @@ public class WordsDictionary : MonoBehaviour
         _words[index].OpenWord();
         _message.text = string.Empty;
         _score.Guess(word.Length);
+
+        if (_words.Length == _guessedWords.Count)
+        {
+            GameOver?.Invoke();
+
+            int score = _score.TotalScore;
+            int time = _score.ElapsedTime;
+            GameOverParams.Set(score, time);
+            SceneLoader.LoadGameOverScene();
+        }
     }
 
     public void ResetDictionary()

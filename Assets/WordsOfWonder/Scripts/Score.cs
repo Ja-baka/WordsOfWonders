@@ -15,6 +15,9 @@ internal class Score : MonoBehaviour
     private string _prefix;
     private TextMeshProUGUI _view;
 
+    public int ElapsedTime => Mathf.RoundToInt(_elapsedTime);
+    public int TotalScore => _scorePoitns;
+
     private void Start()
     {
         _view = GetComponent<TextMeshProUGUI>();
