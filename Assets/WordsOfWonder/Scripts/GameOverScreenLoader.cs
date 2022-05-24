@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameOverScrinLoader : MonoBehaviour
+public class GameOverScreenLoader : MonoBehaviour
 {
     [SerializeField] private TMPro.TextMeshProUGUI _scoreView;
     [SerializeField] private TMPro.TextMeshProUGUI _timeView;

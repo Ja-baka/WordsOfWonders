@@ -5,7 +5,7 @@ public class Word : MonoBehaviour
 {
     [SerializeField] private string _value;
     [SerializeField] private GameObject[] _textCells;
-    [TextArea] [SerializeField] private string _tip;
+    [TextArea][SerializeField] private string _tip;
 
     private TextMeshProUGUI[] _textes;
 
@@ -32,19 +32,22 @@ public class Word : MonoBehaviour
 
     public void OpenWord()
     {
-        SetTextesEnabled(true);
+        TextesEnabled = true;
     }
 
     public void CloseWord()
     {
-        SetTextesEnabled(false);
+        TextesEnabled = false;
     }
 
-    private void SetTextesEnabled(bool enabled)
+    private bool TextesEnabled
     {
-        foreach (TextMeshProUGUI tmp in _textes)
+        set
         {
-            tmp.enabled = enabled;
+            foreach (TextMeshProUGUI tmp in _textes)
+            {
+                tmp.enabled = value;
+            }
         }
     }
 }

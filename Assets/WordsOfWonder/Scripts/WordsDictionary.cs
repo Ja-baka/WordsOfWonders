@@ -18,13 +18,7 @@ public class WordsDictionary : MonoBehaviour
 
     private void Start()
     {
-        _wordsValue = new string[_words.Length];
-        int index = 0;
-        foreach (Word word in _words)
-        {
-            _wordsValue[index++] = word.Value;
-        }
-
+        _wordsValue = _words.Select((w) => w.Value).ToArray();
         _guessedWords = new List<string>();
     }
 
@@ -32,7 +26,7 @@ public class WordsDictionary : MonoBehaviour
     {
         var notGuessedWords = _words.Where((w) 
             => _guessedWords.Contains(w.Value) == false);
-
+            
         if (notGuessedWords.Any() == false)
         {
             _message.color = Color.red;
