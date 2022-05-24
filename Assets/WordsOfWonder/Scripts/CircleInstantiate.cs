@@ -15,6 +15,7 @@ public class CircleInstantiate : MonoBehaviour
         }
 
         int angleStep = 360 / _letters.Length;
+
         for (int i = 0; i < _letters.Length; i++)
         {
             GameObject letter = Instantiate(_letterTemplate, transform);

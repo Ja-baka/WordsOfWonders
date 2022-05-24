@@ -4,13 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public void LoadSceneByIndex(int index)
-    {
-        SceneManager.LoadScene(index);
-    }
+    public void LoadSceneByIndex(int index) => SceneManager.LoadScene(index);
 
-    public static void LoadGameOverScene()
-{
-        SceneManager.LoadScene("GameOverScreen");
-    }
+    public static void LoadGameOverScene() => SceneManager.LoadScene("GameOverScreen");
+
+    public void GameQuit() => Application.Quit();
 }
