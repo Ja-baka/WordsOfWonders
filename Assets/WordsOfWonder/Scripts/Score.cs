@@ -14,7 +14,8 @@ internal class Score : MonoBehaviour
 
     public int ElapsedTime => Mathf.RoundToInt(_elapsedTime);
     public int TotalScore { get; private set; }
-
+    public bool IsEnoughtScoreForTip => TotalScore - _penaltyPerTip >= 0;
+    
     private void Start()
     {
         _view = GetComponent<TextMeshProUGUI>();
@@ -45,7 +46,7 @@ internal class Score : MonoBehaviour
     {
         if (TotalScore < 0)
         {
-            throw new System.NotImplementedException("дадаць Game Over");
+            throw new System.Exception();
         }
         _view.text = _prefix + TotalScore;
     }

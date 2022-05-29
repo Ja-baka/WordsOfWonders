@@ -27,13 +27,19 @@ public class WordsDictionary : MonoBehaviour
     
     public void ShowTip()
     {
+        if (_score.IsEnoughtScoreForTip == false)
+        {
+            _message.color = Color.red;
+            _message.text = "Недостаточно очков для подсказки!";
+            return;
+        }
+
         var disabledCells = _cells.Where((c) => c.enabled == false);
 
         if (disabledCells.Any() == false)
         {
-            string message = "Все слова уже отгаданы!";
             _message.color = Color.red;
-            _message.text = message;
+            _message.text = "Все слова уже отгаданы!";
         }
 
         var randomCell = disabledCells.OrderBy((x) => Random.value).First();
