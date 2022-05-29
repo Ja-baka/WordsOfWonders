@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -38,9 +39,20 @@ public class Word : MonoBehaviour
         TextesEnabled = false;
     }
 
-    private bool TextesEnabled
+    public bool TextesEnabled
     {
-        set
+        get
+        {
+            foreach (TextMeshProUGUI tmp in _textes)
+{
+                if (tmp.enabled == false)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        private set
         {
             foreach (TextMeshProUGUI tmp in _textes)
             {

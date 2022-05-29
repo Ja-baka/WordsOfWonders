@@ -8,9 +8,11 @@ public class WordsDictionary : MonoBehaviour
     [SerializeField] private Word[] _words;
     [SerializeField] private TextMeshProUGUI _message;
     [SerializeField] private Score _score;
+    [SerializeField] private GameObject _cellsContainer;
 
     private string[] _wordsValue;
     private List<string> _guessedWords;
+    private List<TextMeshProUGUI> _cells;
 
     public System.Action GameOver;
 
@@ -20,23 +22,25 @@ public class WordsDictionary : MonoBehaviour
     {
         _wordsValue = _words.Select((w) => w.Value).ToArray();
         _guessedWords = new List<string>();
+        _cells = _cellsContainer.GetComponentsInChildren<TextMeshProUGUI>().ToList();
     }
-
+    
     public void ShowTip()
     {
-        var notGuessedWords = _words.Where((w) 
-            => _guessedWords.Contains(w.Value) == false);
+        var disabledCells = _cells.Where((c) => c.enabled == false);
 
-        throw new System.NotImplementedException("Адчыняць выпадковую літару");
-        if (notGuessedWords.Any() == false)
+        if (disabledCells.Any() == false)
         {
+            string message = "Все слова уже отгаданы!";
             _message.color = Color.red;
-            _message.text = "Все слова уже отгаданы";
-            return;
+            _message.text = message;
         }
 
-        Word word = notGuessedWords.OrderBy((x) => Random.value).First();
+        var randomCell = disabledCells.OrderBy((x) => Random.value).First();
+        randomCell.enabled = true;
+
         _score.UsedTip();
+        CheckWordsGuessed();
     }
 
     public void TryGuess(string word)
@@ -60,15 +64,34 @@ public class WordsDictionary : MonoBehaviour
         _message.text = string.Empty;
         _score.Guess();
 
-        if (_words.Length == _guessedWords.Count)
-        {
-            GameOver?.Invoke();
+        CheckWin();
+    }
 
-            int score = _score.TotalScore;
-            int time = _score.ElapsedTime;
-            GameOverParams.Set(score, time);
-            SceneLoader.LoadGameOverScene();
+    private void CheckWordsGuessed()
+    {
+        foreach (Word word in _words)
+        {
+            if (_guessedWords.Contains(word.Value) == false
+                && word.TextesEnabled == true)
+            {
+                _guessedWords.Add(word.Value);
+            }
         }
+        CheckWin();
+    }
+
+    private void CheckWin()
+    {
+        if (_words.Length != _guessedWords.Count)
+        {
+            return;
+        }
+        GameOver?.Invoke();
+
+        int score = _score.TotalScore;
+        int time = _score.ElapsedTime;
+        GameOverParams.Set(score, time);
+        SceneLoader.LoadGameOverScene();
     }
 
     public void ResetDictionary()
