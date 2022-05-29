@@ -61,7 +61,7 @@ public class WordsDictionary : MonoBehaviour
         if (_guessedWords.Contains(word))
         {
             _message.color = Color.red;
-            _message.text = "Вы уже отгадали это слово";
+            _message.text = "Вы уже отгадали данное слово";
             return;
         }
 
