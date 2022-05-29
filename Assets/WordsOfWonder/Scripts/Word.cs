@@ -5,12 +5,10 @@ public class Word : MonoBehaviour
 {
     [SerializeField] private string _value;
     [SerializeField] private GameObject[] _textCells;
-    [TextArea][SerializeField] private string _tip;
 
     private TextMeshProUGUI[] _textes;
 
     public string Value => _value;
-    public string Tip => _tip;
 
     private void OnValidate()
     {

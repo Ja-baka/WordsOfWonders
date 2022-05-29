@@ -26,7 +26,8 @@ public class WordsDictionary : MonoBehaviour
     {
         var notGuessedWords = _words.Where((w) 
             => _guessedWords.Contains(w.Value) == false);
-            
+
+        throw new System.NotImplementedException("Адчыняць выпадковую літару");
         if (notGuessedWords.Any() == false)
         {
             _message.color = Color.red;
@@ -35,8 +36,6 @@ public class WordsDictionary : MonoBehaviour
         }
 
         Word word = notGuessedWords.OrderBy((x) => Random.value).First();
-        _message.color = Color.white;
-        _message.text = $"Подсказка: {word.Tip}";
         _score.UsedTip();
     }
 
@@ -46,7 +45,6 @@ public class WordsDictionary : MonoBehaviour
         {
             _message.color = Color.red;
             _message.text = "Нет такого слова";
-            _score.Miss();
             return;
         }
         if (_guessedWords.Contains(word))
@@ -60,7 +58,7 @@ public class WordsDictionary : MonoBehaviour
         int index = System.Array.IndexOf(_wordsValue, word);
         _words[index].OpenWord();
         _message.text = string.Empty;
-        _score.Guess(word.Length);
+        _score.Guess();
 
         if (_words.Length == _guessedWords.Count)
         {

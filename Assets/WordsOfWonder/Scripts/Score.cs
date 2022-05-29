@@ -4,19 +4,16 @@ using UnityEngine;
 [RequireComponent(typeof(TextMeshProUGUI))]
 internal class Score : MonoBehaviour
 {
-    [SerializeField] private int _bonusPerLetter;
+    [SerializeField] private int _bonusPerWord;
     [SerializeField] private int _penaltyPerTip;
-    [SerializeField] private int _penaltyPerMiss;
     [SerializeField] private int _timeToGuess;
-    [SerializeField] private bool _canBeNegativeScore;
 
     private float _elapsedTime;
-    private int _scorePoitns;
     private string _prefix;
     private TextMeshProUGUI _view;
 
     public int ElapsedTime => Mathf.RoundToInt(_elapsedTime);
-    public int TotalScore => _scorePoitns;
+    public int TotalScore { get; private set; }
 
     private void Start()
     {
@@ -30,31 +27,26 @@ internal class Score : MonoBehaviour
         _elapsedTime += Time.deltaTime;
     }
 
-    public void Guess(int lettersCount)
+    public void Guess()
     {
-        _scorePoitns += Mathf.RoundToInt(_bonusPerLetter * lettersCount - _elapsedTime / _timeToGuess);
+        TotalScore += Mathf.RoundToInt(_bonusPerWord 
+            - _elapsedTime / _timeToGuess);
         ShowScore();
     }
 
     public void UsedTip()
     {
-        _scorePoitns -= _penaltyPerTip;
-        ShowScore();
-    }
-
-    public void Miss()
-    {
-        _scorePoitns -= _penaltyPerMiss;
+        TotalScore -= _penaltyPerTip;
+        
         ShowScore();
     }
 
     private void ShowScore()
     {
-        if (_scorePoitns < 0
-            && _canBeNegativeScore == false)
+        if (TotalScore < 0)
         {
-            _scorePoitns = 0;
+            throw new System.NotImplementedException("дадаць Game Over");
         }
-        _view.text = _prefix + _scorePoitns;
+        _view.text = _prefix + TotalScore;
     }
 }
