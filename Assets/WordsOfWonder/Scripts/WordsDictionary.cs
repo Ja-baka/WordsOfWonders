@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class WordsDictionary : MonoBehaviour
 {
@@ -96,7 +97,8 @@ public class WordsDictionary : MonoBehaviour
 
         int score = _score.TotalScore;
         int time = _score.ElapsedTime;
-        GameOverParams.Set(score, time);
+        int index = SceneManager.GetActiveScene().buildIndex;
+        GameOverParams.Set(score, time, index);
         SceneLoader.LoadGameOverScene();
     }
 
