@@ -272,7 +272,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bonusPerWord: 100
   _penaltyPerTip: 50
-  _timeToGuess: 10
 --- !u!1001 &34596955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2922,7 +2921,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 262, y: -117}
+  m_AnchoredPosition: {x: 251, y: -187}
   m_SizeDelta: {x: 1087.28, y: 914.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1568110925

@@ -6,7 +6,6 @@ internal class Score : MonoBehaviour
 {
     [SerializeField] private int _bonusPerWord;
     [SerializeField] private int _penaltyPerTip;
-    [SerializeField] private int _timeToGuess;
 
     private float _elapsedTime;
     private string _prefix;
@@ -30,8 +29,7 @@ internal class Score : MonoBehaviour
 
     public void Guess()
     {
-        TotalScore += Mathf.RoundToInt(_bonusPerWord 
-            - _elapsedTime / _timeToGuess);
+        TotalScore += _bonusPerWord;
         ShowScore();
     }
 
