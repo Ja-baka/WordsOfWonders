@@ -8,6 +8,11 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
+    public static void LoadLevelsListScene()
+    {
+        SceneManager.LoadScene("LevelsList");
+    }
+
     public static void LoadGameOverScene()
     {
         SceneManager.LoadScene("GameOverScreen");
